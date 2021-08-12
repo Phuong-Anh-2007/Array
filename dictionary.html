@@ -6,23 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subject Dictionary</title>
 </head>
-<body>
-    <h1>Subject Dictionary</h1>
-    <input type="text" name="word" id="word" placeholder="Nhập từ tiếng anh cần tra">
+<body style="text-align: center;">
+    <h1>📚 Subject Dictionary </h1> 
+    <input type="text" name="word" id="word" placeholder="Nhập từ tiếng anh cần tra"><br>
     <input type="radio" name="Languae" id="Vietnam"><img src="https://product.hstatic.net/200000122283/product/c-e1-bb-9d-vi-e1-bb-87t-nam_2c0683597d2d419fac401f51ccbae779_grande.jpg" 
-                                                         style="width: 5%;">
+            style="width:5%"> &NonBreakingSpace; &NonBreakingSpace;&NonBreakingSpace; &NonBreakingSpace;&NonBreakingSpace; &NonBreakingSpace;
     <input type="radio" name="Languae" id="English"><img src="https://th.bing.com/th/id/OIP.aQYkGBX3aPdpUsi-pOou8AHaDt?w=322&h=175&c=7&o=5&pid=1.7" 
-                                                            style="width: 6%;">
-    <br><br><button onclick="find()">🔎</button>
-    <hr>
-    <p id="result"></p>
+            style="width:5%">
+    <br><button onclick="find()" id="find" onmouseout="mouseout()" onmouseover="mousein()">🔎</button>
+    <hr style="width: 50%">
+    <h3 id="result"></h3>
 </body>
 </html>
 <script>
     function find() {
         let v = ['toán','ngữ văn','anh văn','hóa học','vật lý','sinh học','lịch sử','địa lý','tin học','công nghệ thông tin'];
         let e = ['Math','literature','english','chemistry','physics','biology','history','georaphy','IT (Information Technology)','IT (Information Technology)'];
-        // debugger;
         let word = document.getElementById('word').value;
         let flag = false, languae;
         if (document.getElementById('Vietnam').checked) {
@@ -30,16 +29,18 @@
         } else  if (document.getElementById('English').checked) {
             languae  = 'English';
         }
-        console.log(languae);
         if (languae == 'Vietnam') {
             for (let i = 0; i < e.length; i++) {
                 if (e[i] == word) {
-                    document.getElementById('result').innerHTML=v[i];
                     flag = true;
+                    break;                    
                 }
             }
-            if (flag == false) {
-                document.getElementById('Từ này hong có trong từ điển 😥');
+            console.log(flag);
+            if (flag) {
+                document.getElementById('result').innerHTML=v[i];
+            } else {
+                document.getElementById('result').innerHTML='Từ này hong có trong từ điển 😥';
             }
         } else if (languae == 'English') {
             for (let i = 0; i < v.length; i++) {
@@ -49,9 +50,16 @@
                 }
             }
             if (flag == false) {
-                document.getElementById('Từ này hong có trong từ điển 😥');
+                document.getElementById('result').innerHTML='Từ này hong có trong từ điển 😥';
             }
         }
+   }
 
+   function mousein() {
+       document.getElementById('find').innerHTML='🔍';
+   }
+
+   function mouseout() {
+       document.getElementById('find').innerHTML='🔎';
    }
 </script>
